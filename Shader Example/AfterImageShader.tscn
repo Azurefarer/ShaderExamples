@@ -1,15 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtrqabgmmuaxj"]
+[gd_scene load_steps=12 format=3 uid="uid://bcb1c7dapoc8e"]
 
-[ext_resource type="Script" path="res://Main scene.gd" id="1_uvl2o"]
-[ext_resource type="Material" uid="uid://ckq6lddrujb4p" path="res://water_test1.tres" id="3_b3gak"]
-[ext_resource type="Shader" path="res://Terrain.gdshader" id="4_83so3"]
-[ext_resource type="Shader" path="res://PARTICLE_SHADER_TEST2.gdshader" id="9_5eh4t"]
+[ext_resource type="Script" path="res://Main scene.gd" id="1_sko2c"]
+[ext_resource type="Shader" path="res://PARTICLE_SHADER_TEST2.gdshader" id="2_8vry0"]
+[ext_resource type="Material" uid="uid://ckq6lddrujb4p" path="res://water_test1.tres" id="3_cf2sv"]
+[ext_resource type="Shader" path="res://Terrain.gdshader" id="4_80rwi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cf8i1"]
 radius = 5.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aujhj"]
-shader = ExtResource("9_5eh4t")
+shader = ExtResource("2_8vry0")
 shader_parameter/scale = 0.1
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_e1k2i"]
@@ -19,17 +19,17 @@ viewport_path = NodePath("SubViewport")
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6u7xv"]
-shader = ExtResource("4_83so3")
+shader = ExtResource("4_80rwi")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_81nfq"]
 material = SubResource("ShaderMaterial_6u7xv")
 orientation = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x4akg"]
-material = ExtResource("3_b3gak")
+material = ExtResource("3_cf2sv")
 
 [node name="Root" type="Node2D"]
-script = ExtResource("1_uvl2o")
+script = ExtResource("1_sko2c")
 
 [node name="Test obj" type="RigidBody2D" parent="."]
 position = Vector2(436, 147)
@@ -63,7 +63,7 @@ position = Vector2(247, 66)
 polygon = PackedVector2Array(158, 79, 178, 193, 234, 379, 271, 485, 338, 535, 411, 546, 461, 531, 517, 493, 559, 448, 585, 397, 630, 215, 648, 81, 768, 583, 26, 617)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D/CollisionPolygon2D"]
-material = ExtResource("3_b3gak")
+material = ExtResource("3_cf2sv")
 position = Vector2(658, 195)
 scale = Vector2(50, 50)
 mesh = SubResource("PlaneMesh_81nfq")
