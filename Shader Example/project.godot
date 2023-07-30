@@ -12,8 +12,18 @@ config_version=5
 
 config/name="Shader Example"
 run/main_scene="res://Main scene.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
+config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Helper="*res://Assets/Scripts/helper.gd"
+
+[display]
+
+window/size/viewport_width=384
+window/size/viewport_height=224
+window/stretch/mode="viewport"
 
 [input]
 
