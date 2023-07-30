@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bqk7ycmdumyrg"
+path="res://.godot/imported/Street Fighter 3 OST - Beats In My Head.mp3-6dfcbd279e4900ed213154e876c2817a.mp3str"
+
+[deps]
+
+source_file="res://Assets/BGM/Street Fighter 3 OST - Beats In My Head.mp3"
+dest_files=["res://.godot/imported/Street Fighter 3 OST - Beats In My Head.mp3-6dfcbd279e4900ed213154e876c2817a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
