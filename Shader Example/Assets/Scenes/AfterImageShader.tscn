@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=11 format=3 uid="uid://b7ljug0j2oex2"]
 
-[ext_resource type="Script" path="res://Main scene.gd" id="1_sko2c"]
 [ext_resource type="Shader" path="res://Assets/Shaders/PARTICLE_SHADER_TEST2.gdshader" id="2_8vry0"]
-[ext_resource type="Material" uid="uid://ckq6lddrujb4p" path="res://water_test1.tres" id="3_cf2sv"]
+[ext_resource type="Material" uid="uid://chwcxk5ws3tel" path="res://water_test1.tres" id="3_cf2sv"]
 [ext_resource type="Shader" path="res://Assets/Shaders/Terrain.gdshader" id="4_80rwi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cf8i1"]
@@ -29,7 +28,6 @@ orientation = 2
 material = ExtResource("3_cf2sv")
 
 [node name="Root" type="Node2D"]
-script = ExtResource("1_sko2c")
 
 [node name="Test obj" type="RigidBody2D" parent="."]
 position = Vector2(436, 147)

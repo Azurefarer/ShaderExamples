@@ -21,8 +21,8 @@ Helper="*res://Assets/Scripts/helper.gd"
 
 [display]
 
-window/size/viewport_width=384
-window/size/viewport_height=224
+window/size/viewport_width=900
+window/size/viewport_height=600
 window/stretch/mode="viewport"
 
 [input]

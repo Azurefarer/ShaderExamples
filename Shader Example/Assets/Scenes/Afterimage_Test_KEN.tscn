@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=3 uid="uid://y475lbro5ntl"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Test_1.gd" id="1_ahe7i"]
-[ext_resource type="Texture2D" uid="uid://dal1vwb47vnlu" path="res://Assets/Sprites/Elena_Stage_Sheet.png" id="1_fbphr"]
-[ext_resource type="Texture2D" uid="uid://cuwt4i7ylejrk" path="res://Assets/Sprites/Ken_Sheet.png" id="2_t3hh5"]
-[ext_resource type="Shader" path="res://PARTICLE_SHADER_TEST2.gdshader" id="3_8xfvh"]
-[ext_resource type="AudioStream" uid="uid://bqk7ycmdumyrg" path="res://Assets/BGM/Street Fighter 3 OST - Beats In My Head.mp3" id="3_rdnm3"]
-[ext_resource type="Script" path="res://Assets/Scripts/Afterimage.gd" id="4_i6ltu"]
+[ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Test_1.gd" id="1_6gjua"]
+[ext_resource type="Texture2D" uid="uid://cuwt4i7ylejrk" path="res://Assets/Sprites/Ken_Sheet.png" id="2_ydquh"]
+[ext_resource type="Shader" path="res://PARTICLE_SHADER_TEST2.gdshader" id="3_k22fl"]
+[ext_resource type="Script" path="res://Assets/Scripts/Afterimage.gd" id="4_mtvxb"]
+[ext_resource type="Texture2D" uid="uid://dal1vwb47vnlu" path="res://Assets/Sprites/Elena_Stage_Sheet.png" id="5_fxtqs"]
+[ext_resource type="AudioStream" uid="uid://bqk7ycmdumyrg" path="res://Assets/BGM/Street Fighter 3 OST - Beats In My Head.mp3" id="6_dg745"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v3ih2"]
 particles_animation = true
@@ -14,9 +14,13 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qorm4"]
-shader = ExtResource("3_8xfvh")
+shader = ExtResource("3_k22fl")
+shader_parameter/fadeCont = false
+shader_parameter/fadeStep = 6.04
 shader_parameter/scale = 1.0
-shader_parameter/tex_anim_speed = 0.01
+shader_parameter/red = 0.015
+shader_parameter/green = 0.185
+shader_parameter/blue = 0.565
 shader_parameter/tex_anim_offset = 0.0
 
 [sub_resource type="Animation" id="Animation_wb0fa"]
@@ -159,25 +163,22 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_ahe7i")
+script = ExtResource("1_6gjua")
 
 [node name="Ken" type="Sprite2D" parent="."]
 z_index = 10
 texture_filter = 1
-position = Vector2(59.6967, 126.223)
-texture = ExtResource("2_t3hh5")
+position = Vector2(42, 129)
+texture = ExtResource("2_ydquh")
 hframes = 23
-frame = 7
+frame = 6
 
 [node name="Afterimage" type="GPUParticles2D" parent="Ken"]
-modulate = Color(0.313726, 0, 1, 1)
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_v3ih2")
-amount = 10
+emitting = false
 process_material = SubResource("ShaderMaterial_qorm4")
-preprocess = 0.5
-speed_scale = 1.5
-script = ExtResource("4_i6ltu")
+script = ExtResource("4_mtvxb")
 metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Ken"]
@@ -189,7 +190,7 @@ libraries = {
 z_index = -1
 texture_filter = 1
 position = Vector2(199, -27)
-texture = ExtResource("1_fbphr")
+texture = ExtResource("5_fxtqs")
 hframes = 16
 frame = 2
 
@@ -201,10 +202,11 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(150, 112)
+zoom = Vector2(3, 3)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_rdnm3")
-volume_db = -10.009
+stream = ExtResource("6_dg745")
+volume_db = -80.0
 autoplay = true
 
 [node name="CanvasGroup" type="CanvasLayer" parent="."]
