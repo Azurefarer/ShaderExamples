@@ -69,14 +69,18 @@ shader_parameter/_rim_smoothness = 0.01
 render_priority = 0
 shader = ExtResource("3_h4vs8")
 shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/light_energy = 0.1
 shader_parameter/shadow = 0.5
 shader_parameter/shadow_width = 0.0
 shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
 shader_parameter/_specular_smoothness = 0.01
 shader_parameter/_specular_strength = 0.075
 shader_parameter/_glossiness = 0.1
+shader_parameter/shininess = 0.1
+shader_parameter/specular_intensity = 0.075
 shader_parameter/_rim_size = 0.5
 shader_parameter/_rim_smoothness = 0.01
+shader_parameter/rim_tolerance = 0.3
 
 [node name="Node3D" type="Node3D"]
 
@@ -162,6 +166,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_m51wb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, 0, 6.54442, 11.6207)
+light_color = Color(0, 0.921569, 0.780392, 1)
 
 [node name="person2" parent="." instance=ExtResource("2_ukxs3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -0.399)
