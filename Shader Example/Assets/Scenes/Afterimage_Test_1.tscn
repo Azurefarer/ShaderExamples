@@ -120,7 +120,7 @@ tracks/5/path = NodePath("Afterimage:emitting")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.5, 1.725),
+"times": PackedFloat32Array(0.5, 1.95),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -175,8 +175,8 @@ show_behind_parent = true
 material = SubResource("CanvasItemMaterial_v3ih2")
 amount = 10
 process_material = SubResource("ShaderMaterial_qorm4")
-texture = ExtResource("2_t3hh5")
 preprocess = 0.5
+speed_scale = 1.5
 script = ExtResource("4_i6ltu")
 metadata/_edit_lock_ = true
 
