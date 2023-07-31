@@ -38,14 +38,15 @@ void light(){
  //Two-Tone Shading
 	float toonFinal;
 	float toon = dot(NORMAL, LIGHT);
+	
 	if (toon < .5) {
 		toonFinal = 0.0;
-	} 
+	}
+	
 	if (toon >= .5) {
 		toonFinal = 1.0;
 	}
 
 	DIFFUSE_LIGHT += toonFinal * ALBEDO;
 
-	
 }

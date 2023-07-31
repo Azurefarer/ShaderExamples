@@ -1,12 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://0kug8ebk3qlp"]
+[gd_scene load_steps=12 format=3 uid="uid://c1ayloaaid4rm"]
 
-[ext_resource type="Shader" path="res://ToonShaderMODEL.gdshader" id="1_kiccr"]
-[ext_resource type="Shader" path="res://ToonShader.gdshader" id="1_rs7mk"]
-[ext_resource type="PackedScene" uid="uid://vt12eftjyx6c" path="res://person.fbx" id="2_igni4"]
+[ext_resource type="Shader" path="res://Assets/Shaders/ToonShaderMODEL.gdshader" id="1_c4hob"]
+[ext_resource type="PackedScene" uid="uid://vt12eftjyx6c" path="res://person.fbx" id="2_ukxs3"]
+[ext_resource type="Shader" path="res://Assets/Shaders/ToonShader.gdshader" id="3_h4vs8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_51gsj"]
 render_priority = 0
-shader = ExtResource("1_kiccr")
+shader = ExtResource("1_c4hob")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/shadow = 0.5
 shader_parameter/shadow_width = 0.0
@@ -22,7 +22,7 @@ material = SubResource("ShaderMaterial_51gsj")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_popit"]
 render_priority = 0
-shader = ExtResource("1_kiccr")
+shader = ExtResource("1_c4hob")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/shadow = 0.5
 shader_parameter/shadow_width = 0.0
@@ -38,7 +38,7 @@ material = SubResource("ShaderMaterial_popit")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jsq1y"]
 render_priority = 0
-shader = ExtResource("1_kiccr")
+shader = ExtResource("1_c4hob")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/shadow = 0.5
 shader_parameter/shadow_width = 0.0
@@ -54,7 +54,7 @@ material = SubResource("ShaderMaterial_jsq1y")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m51wb"]
 render_priority = 0
-shader = ExtResource("1_kiccr")
+shader = ExtResource("1_c4hob")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/shadow = 0.5
 shader_parameter/shadow_width = 0.0
@@ -67,7 +67,7 @@ shader_parameter/_rim_smoothness = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_38moo"]
 render_priority = 0
-shader = ExtResource("1_rs7mk")
+shader = ExtResource("3_h4vs8")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/shadow = 0.5
 shader_parameter/shadow_width = 0.0
@@ -95,7 +95,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 mesh = SubResource("BoxMesh_py6l7")
 skeleton = NodePath("../../..")
 
-[node name="person" parent="." instance=ExtResource("2_igni4")]
+[node name="person" parent="." instance=ExtResource("2_ukxs3")]
 
 [node name="Skeleton3D" parent="person/RootNode/root" index="0"]
 bones/0/position = Vector3(2.32831e-12, 0.101587, 3.17753)
@@ -163,7 +163,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_m51wb")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, 0, 6.54442, 11.6207)
 
-[node name="person2" parent="." instance=ExtResource("2_igni4")]
+[node name="person2" parent="." instance=ExtResource("2_ukxs3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -0.399)
 
 [node name="Skeleton3D" parent="person2/RootNode/root" index="0"]
