@@ -7,7 +7,7 @@ Two-tone shading : Specular highlights (for flair) : Rim Lighting
 
 */
 shader_type spatial;
-render_mode ambient_light_disabled;
+render_mode ambient_light_disabled, skip_vertex_transform;
 
 uniform vec4 color : source_color = vec4(1.0);
 uniform sampler2D tex : source_color, hint_default_white;
@@ -28,11 +28,15 @@ uniform float _rim_size : hint_range(0, 1, 0.05) = 0.5;
 uniform float _rim_smoothness : hint_range(0.0, 0.5, 0.025) = 0.01;
 uniform float rim_tolerance : hint_range(0.0, 1.0, 0.05);
 
-
+void vertex() {
+	VERTEX = (MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	NORMAL = normalize((MODEL_MATRIX * vec4(NORMAL, 0.0)).xyz);
+	
+}
 
 void fragment() {
 
-	ALBEDO = COLOR.rgb;
+	ALBEDO = NORMAL;
 
 //	ALBEDO = pow(texture(tex, UV).rgb, vec3(1.0)) * color.rgb;
 	

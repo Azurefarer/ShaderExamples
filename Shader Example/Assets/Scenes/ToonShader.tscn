@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1ayloaaid4rm"]
+[gd_scene load_steps=16 format=3 uid="uid://c1ayloaaid4rm"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/ToonShaderMODEL.gdshader" id="1_c4hob"]
 [ext_resource type="PackedScene" uid="uid://vt12eftjyx6c" path="res://person.fbx" id="2_ukxs3"]
 [ext_resource type="Shader" path="res://Assets/Shaders/ToonShader.gdshader" id="3_h4vs8"]
+[ext_resource type="Material" uid="uid://bcj10vwcbgybt" path="res://Assets/Shaders/ShaderMaterialTest.tres" id="4_udq0n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_51gsj"]
 render_priority = 0
@@ -82,10 +83,16 @@ shader_parameter/_rim_size = 0.5
 shader_parameter/_rim_smoothness = 0.01
 shader_parameter/rim_tolerance = 0.3
 
+[sub_resource type="BoxMesh" id="BoxMesh_kkgx6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4efc"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_p07rj"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="Cylinder" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4309, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.9765, 9.16211, -0.0632439)
 mesh = SubResource("CylinderMesh_7tv1t")
 skeleton = NodePath("Sphere/Cube")
 
@@ -100,6 +107,7 @@ mesh = SubResource("BoxMesh_py6l7")
 skeleton = NodePath("../../..")
 
 [node name="person" parent="." instance=ExtResource("2_ukxs3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.1704, 0, 0)
 
 [node name="Skeleton3D" parent="person/RootNode/root" index="0"]
 bones/0/position = Vector3(2.32831e-12, 0.101587, 3.17753)
@@ -165,11 +173,16 @@ bones/59/rotation = Quaternion(-0.518786, -0.471763, 0.516142, -0.491831)
 surface_material_override/0 = SubResource("ShaderMaterial_m51wb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, 0, 6.54442, 11.6207)
-light_color = Color(0, 0.921569, 0.780392, 1)
+transform = Transform3D(0.606816, -0.75137, -0.259265, -0.603304, -0.647763, 0.465218, -0.517493, -0.125886, -0.846377, -2.17941, 2.28538, -6.0699)
+sky_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.2581, 5, 15)
+fov = 41.3
+near = 1.077
 
 [node name="person2" parent="." instance=ExtResource("2_ukxs3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -0.399)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.6704, 0, -0.399)
 
 [node name="Skeleton3D" parent="person2/RootNode/root" index="0"]
 bones/0/position = Vector3(2.32831e-12, 0.101587, 3.17753)
@@ -233,6 +246,22 @@ bones/59/rotation = Quaternion(-0.518786, -0.471763, 0.516142, -0.491831)
 
 [node name="Person" parent="person2/RootNode/root/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_38moo")
+
+[node name="CUBE" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_kkgx6")
+surface_material_override/0 = ExtResource("4_udq0n")
+
+[node name="CAP" type="MeshInstance3D" parent="CUBE"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02037, 0, 0)
+mesh = SubResource("CapsuleMesh_g4efc")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_udq0n")
+
+[node name="SPHERE" type="MeshInstance3D" parent="CUBE/CAP"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7137, 0, 0)
+mesh = SubResource("SphereMesh_p07rj")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("4_udq0n")
 
 [editable path="person"]
 [editable path="person2"]

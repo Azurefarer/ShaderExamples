@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://y475lbro5ntl"]
+[gd_scene load_steps=16 format=3 uid="uid://y475lbro5ntl"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Test_1.gd" id="1_6gjua"]
 [ext_resource type="Texture2D" uid="uid://cuwt4i7ylejrk" path="res://Assets/Sprites/Ken_Sheet.png" id="2_ydquh"]
@@ -136,6 +136,20 @@ _data = {
 "Super1": SubResource("Animation_udees")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dmkgk"]
+particles_animation = true
+particles_anim_h_frames = 23
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_afgls"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+anim_speed_min = 5.56
+anim_speed_max = 5.56
+
 [sub_resource type="Animation" id="Animation_l212d"]
 resource_name = "BG"
 loop_mode = 1
@@ -174,6 +188,7 @@ hframes = 23
 frame = 6
 
 [node name="Afterimage" type="GPUParticles2D" parent="Ken"]
+visible = false
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_v3ih2")
 emitting = false
@@ -185,6 +200,11 @@ metadata/_edit_lock_ = true
 libraries = {
 "": SubResource("AnimationLibrary_7edum")
 }
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Ken"]
+material = SubResource("CanvasItemMaterial_dmkgk")
+process_material = SubResource("ParticleProcessMaterial_afgls")
+script = ExtResource("4_mtvxb")
 
 [node name="ElenaStage" type="Sprite2D" parent="."]
 z_index = -1
