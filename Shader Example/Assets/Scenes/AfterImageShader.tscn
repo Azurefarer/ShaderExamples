@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b7ljug0j2oex2"]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/PARTICLE_SHADER_TEST2.gdshader" id="2_8vry0"]
-[ext_resource type="Material" uid="uid://chwcxk5ws3tel" path="res://water_test1.tres" id="3_cf2sv"]
+[ext_resource type="Material" uid="uid://chwcxk5ws3tel" path="res://Assets/Shaders/water_test1.tres" id="3_cf2sv"]
 [ext_resource type="Shader" path="res://Assets/Shaders/Terrain.gdshader" id="4_80rwi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cf8i1"]
