@@ -3,9 +3,9 @@ shader_type particles;
 uniform bool fadeCont; //if TRUE after image will continuously fade
 uniform float fadeStep : hint_range(2.0, 10.0); //if fadeCont = FALSE this is the rate at which the after image will fade
 uniform float scale : hint_range(0.0, 2.0, .05) = 1.0;
-uniform float red : hint_range(0.0, 1.0, 0.005);
-uniform float green : hint_range(0.0, 1.0, 0.005);
-uniform float blue : hint_range(0.0, 1.0, 0.005);
+uniform float red : hint_range(0.0, 0.2, 0.005);
+uniform float green : hint_range(0.0, 0.2, 0.005);
+uniform float blue : hint_range(0.0, 0.2, 0.005);
 uniform float tex_anim_offset;
 
 void start() {
