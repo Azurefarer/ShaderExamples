@@ -36,9 +36,9 @@ void vertex() {
 
 void fragment() {
 
-	ALBEDO = NORMAL;
+//	ALBEDO = NORMAL;
 
-//	ALBEDO = pow(texture(tex, UV).rgb, vec3(1.0)) * color.rgb;
+	ALBEDO = pow(texture(tex, UV).rgb, vec3(1.0)) * color.rgb;
 	
 }
 
@@ -58,6 +58,7 @@ void light(){
 //Specular Lighting
 /*
 NOTE:
+PHONG Shading
 SPECULAR RGB = LIGHT_COLOR * ALBEDO * specular_intensity(material) *
 					(COSINE(angle between VIEWER and REFLECTED LIGHT) *
 					MAGNITUDE of VIEW vecter and REFLECTION vector)
@@ -80,6 +81,6 @@ specular.rgb = LIGHT_COLOR.rgb * ALBEDO * specular_intensity * dot(VIEW, LIGHT) 
 	
 	
 	DIFFUSE_LIGHT += vec3(mix(two_tone * ALBEDO, rim * ALBEDO, 0.1));// * (LIGHT_COLOR.rgb * light_energy);
-	SPECULAR_LIGHT += specular;
+//	SPECULAR_LIGHT += specular;
 
 }

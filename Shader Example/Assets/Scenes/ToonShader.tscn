@@ -81,7 +81,7 @@ shader_parameter/shininess = 0.1
 shader_parameter/specular_intensity = 0.075
 shader_parameter/_rim_size = 0.5
 shader_parameter/_rim_smoothness = 0.01
-shader_parameter/rim_tolerance = 0.3
+shader_parameter/rim_tolerance = 0.55
 
 [sub_resource type="BoxMesh" id="BoxMesh_kkgx6"]
 
@@ -173,7 +173,7 @@ bones/59/rotation = Quaternion(-0.518786, -0.471763, 0.516142, -0.491831)
 surface_material_override/0 = SubResource("ShaderMaterial_m51wb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.606816, -0.75137, -0.259265, -0.603304, -0.647763, 0.465218, -0.517493, -0.125886, -0.846377, -2.17941, 2.28538, -6.0699)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17941, 2.28538, 2.75891)
 sky_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]

@@ -1,17 +1,20 @@
 shader_type spatial;
 
+uniform sampler2D tex : hint_default_white;
+
 void vertex() {
 	NORMAL = (INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz;
 }
 
 void fragment() {
-	ALBEDO = NORMAL;
+	ALBEDO = texture(tex, UV).rgb;
+
 }
 
 void light() {
-
-	vec3 L = (INV_VIEW_MATRIX * vec4(LIGHT, 0.0)).xyz;
-
-	DIFFUSE_LIGHT += L;
+	float NdotL = dot(NORMAL, LIGHT);
+	
+	DIFFUSE_LIGHT = NdotL * ALBEDO;
+	
 
 }
