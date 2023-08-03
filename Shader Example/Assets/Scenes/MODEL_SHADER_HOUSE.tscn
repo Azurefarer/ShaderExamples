@@ -1,31 +1,54 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdajs0rmencqg"]
+[gd_scene load_steps=14 format=3 uid="uid://co6jjmb7shdcr"]
 
-[ext_resource type="Shader" path="res://Assets/Scenes/GROUND.gdshader" id="1_4jxwu"]
+[ext_resource type="Shader" path="res://Assets/Shaders/GROUND.gdshader" id="1_xd8b0"]
+[ext_resource type="Script" path="res://Assets/Scripts/entity.gd" id="2_0rde8"]
+[ext_resource type="Shader" path="res://Assets/Shaders/WINDOW.gdshader" id="3_8gtdo"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o6pb8"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_tuyhc"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4aadf"]
-lightmap_size_hint = Vector2i(127, 127)
+lightmap_size_hint = Vector2i(502, 502)
 add_uv2 = true
-size = Vector2(25, 25)
-subdivide_width = 100
-subdivide_depth = 100
+size = Vector2(100, 100)
+subdivide_width = 250
+subdivide_depth = 250
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_wq2er"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_31pat"]
 noise_type = 3
-frequency = 0.284
+frequency = 0.067
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c36eo"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8426s"]
+as_normal_map = true
+bump_strength = 3.1
+noise = SubResource("FastNoiseLite_31pat")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d8pta"]
+frequency = 0.236
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lvr8k"]
 seamless = true
 as_normal_map = true
-bump_strength = 1.5
-normalize = false
-noise = SubResource("FastNoiseLite_wq2er")
+bump_strength = 5.1
+noise = SubResource("FastNoiseLite_d8pta")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lnu8x"]
 render_priority = 0
-shader = ExtResource("1_4jxwu")
-shader_parameter/normal = SubResource("NoiseTexture2D_c36eo")
+shader = ExtResource("1_xd8b0")
+shader_parameter/soil1 = Color(0.572549, 0.407843, 0.160784, 1)
+shader_parameter/soil2 = Color(0.917647, 0.713726, 0.309804, 1)
+shader_parameter/grass = Color(0.486275, 0.988235, 0, 1)
+shader_parameter/normal1 = SubResource("NoiseTexture2D_8426s")
+shader_parameter/normal2 = SubResource("NoiseTexture2D_lvr8k")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5tdtw"]
+size = Vector2(10, 10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gkiq"]
+render_priority = 0
+shader = ExtResource("3_8gtdo")
+shader_parameter/bluriness = 0.3
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -34,6 +57,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="entity" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.6547, 7.31326, 0)
+script = ExtResource("2_0rde8")
+
+[node name="PIVOT" type="Node3D" parent="entity"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.6547, -7.31326, 0)
+
+[node name="cam" type="Camera3D" parent="entity/PIVOT"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.6547, 7.31326, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="entity"]
+shape = SubResource("SphereShape3D_o6pb8")
 
 [node name="GROUND" type="StaticBody3D" parent="."]
 
@@ -45,6 +81,17 @@ mesh = SubResource("PlaneMesh_4aadf")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_lnu8x")
 
+[node name="WINDOW" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10.1859, 25.799)
+mesh = SubResource("PlaneMesh_5tdtw")
+surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.983297, 0.162043, 0.0828804, 0.165813, 0.609761, 0.775047, 0.0750536, 0.775844, -0.626445, -8.15793, 7.98882, -3.68652)
+transform = Transform3D(-0.983297, 0.162043, 0.0828805, -0.0968518, -0.851385, 0.515523, 0.1541, 0.498885, 0.852858, -8.15793, 22.5975, 50.7807)
+light_color = Color(1, 1, 0.737255, 1)
 sky_mode = 1
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.2673, 46.7899)
+visible = false
+omni_range = 2.82663
