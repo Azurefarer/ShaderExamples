@@ -15,8 +15,8 @@ particles_anim_loop = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qorm4"]
 shader = ExtResource("3_8xfvh")
-shader_parameter/fadeCont = true
-shader_parameter/fadeStep = 4.863
+shader_parameter/fadeCont = false
+shader_parameter/fadeStep = 3.0
 shader_parameter/scale = 1.1
 shader_parameter/red = 0.065
 shader_parameter/green = 0.005
