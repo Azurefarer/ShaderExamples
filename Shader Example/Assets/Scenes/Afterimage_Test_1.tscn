@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://wiyygw0w835e"]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Test_1.gd" id="1_ahe7i"]
 [ext_resource type="Texture2D" uid="uid://dal1vwb47vnlu" path="res://Assets/Sprites/Elena_Stage_Sheet.png" id="1_fbphr"]
 [ext_resource type="Texture2D" uid="uid://cuwt4i7ylejrk" path="res://Assets/Sprites/Ken_Sheet.png" id="2_t3hh5"]
-[ext_resource type="Shader" path="res://PARTICLE_SHADER_TEST2.gdshader" id="3_8xfvh"]
+[ext_resource type="Shader" path="res://Assets/Shaders/PARTICLE_SHADER_TEST2.gdshader" id="3_8xfvh"]
 [ext_resource type="AudioStream" uid="uid://bqk7ycmdumyrg" path="res://Assets/BGM/Street Fighter 3 OST - Beats In My Head.mp3" id="3_rdnm3"]
 [ext_resource type="Script" path="res://Assets/Scripts/Afterimage.gd" id="4_i6ltu"]
 
