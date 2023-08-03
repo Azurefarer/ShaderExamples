@@ -16,16 +16,13 @@ uniform float light_energy : hint_range(0.0, 1.0, 0.05);
 
 uniform float shadow : hint_range(0.0, 1.0, 0.1) = 0.5;
 uniform float shadow_width : hint_range(0.001, 0.5, 0.05) = 0.0;
-uniform vec4 shadow_color: source_color = vec4(0.705);
+uniform vec4 shadow_color : source_color;
 
-uniform float _specular_smoothness : hint_range(0.0, 0.5) = 0.01;
-uniform float _specular_strength : hint_range(0.0, 0.25, 0.025) = 0.075;
-uniform float _glossiness : hint_range(0.0, 0.5) = 0.1;
 uniform float shininess : hint_range(0.0, 0.5) = 0.1;
 uniform float specular_intensity : hint_range(0.0, 0.25, 0.025) = 0.075;
+uniform float specular_smoothness : hint_range(0.0,0.5) = 0.01;
 
-uniform float _rim_size : hint_range(0, 1, 0.05) = 0.5;
-uniform float _rim_smoothness : hint_range(0.0, 0.5, 0.025) = 0.01;
+uniform float rim_smoothness : hint_range(0.0, 0.5, 0.05);
 uniform float rim_tolerance : hint_range(0.0, 1.0, 0.05);
 
 void vertex() {
@@ -45,15 +42,15 @@ void fragment() {
 void light(){
 	
 //Two-Tone Shading
-	float two_tone;
-	float NdotL = dot(NORMAL, LIGHT);
-	
-	if (NdotL < .5) {
-		two_tone = 0.0;
-	}
-	if (NdotL >= .5) {
-		two_tone = 1.0;
-	}
+//	float two_tone;
+	float NdotL = dot(NORMAL, LIGHT) * ATTENUATION;
+	NdotL = mix(shadow - shadow_width, shadow + shadow_width, NdotL);	
+//	if (NdotL < .5) {
+//		two_tone = 0.0;
+//	}
+//	if (NdotL >= .5) {
+//		two_tone = 1.0;
+//	}
 	
 //Specular Lighting
 /*
@@ -66,21 +63,26 @@ SPECULAR RGB = LIGHT_COLOR * ALBEDO * specular_intensity(material) *
 specular.rgb = LIGHT_COLOR.rgb * ALBEDO * specular_intensity * dot(VIEW, LIGHT) ** shininess
 */
 	vec3 specular;
-	specular.rgb = LIGHT_COLOR.rgb * ALBEDO * specular_intensity * pow(dot(VIEW, LIGHT), shininess);
+//	specular.rgb = mix(LIGHT_COLOR.rgb,  ALBEDO, 0.5) * specular_intensity * pow(dot(VIEW, LIGHT), shininess);
+	vec3 H = normalize(VIEW + LIGHT);
+	float NdotH = max(0, dot(NORMAL, H));
+	float specular_strength = pow(NdotH, 1.0 / shininess);
+	specular = vec3(smoothstep(0.5 - specular_smoothness, 0.5 + specular_smoothness, specular_strength));
 	
 //Rim lighting
-	float rim;
-	float NdotV = dot(normalize(NORMAL), normalize(VIEW));
-	if (NdotV < rim_tolerance) {
-		rim = 0.0;
-	}
-	if (NdotV >= rim_tolerance) {
-		rim = 1.0;
-	}
+//	vec3 rim;
+//	float NdotV = 1.0 - dot(normalize(NORMAL), normalize(VIEW));
+//	float rimIntensity = NdotV * NdotL;
+//
+//	rim = vec3(mix(1.0 - rim_tolerance - rim_smoothness, 1.0 - rim_tolerance + rim_smoothness, rimIntensity));
+
+	// rim
+	float rimDot = 1.0 - dot(VIEW, NORMAL);
+	float rimIntensity = rimDot * NdotL;
+	vec3 rim = vec3(smoothstep(1.0 - rim_tolerance - rim_smoothness, 1.0 - rim_tolerance + rim_smoothness, rimIntensity));
 	
 	
-	
-	DIFFUSE_LIGHT += vec3(mix(two_tone * ALBEDO, rim * ALBEDO, 0.1));// * (LIGHT_COLOR.rgb * light_energy);
-//	SPECULAR_LIGHT += specular;
+	DIFFUSE_LIGHT += mix(ALBEDO * shadow_color.rgb, (ALBEDO + (rim + specular) * specular_strength) * LIGHT_COLOR.rgb * 0.33, NdotL + 0.33 * (smoothstep(1.0 - rim_tolerance - rim_smoothness, 1.0 - rim_tolerance + rim_smoothness, rimIntensity)));
+
 
 }

@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://Assets/Shaders/ToonShaderMODEL.gdshader" id="1_c4hob"]
 [ext_resource type="PackedScene" uid="uid://vt12eftjyx6c" path="res://person.fbx" id="2_ukxs3"]
-[ext_resource type="Shader" path="res://Assets/Shaders/ToonShader.gdshader" id="3_h4vs8"]
+[ext_resource type="Shader" path="res://Assets/Scenes/ToonShaderTEST2.gdshader" id="3_knnki"]
 [ext_resource type="Material" uid="uid://bcj10vwcbgybt" path="res://Assets/Shaders/ShaderMaterialTest.tres" id="4_udq0n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_51gsj"]
@@ -59,7 +59,7 @@ shader = ExtResource("1_c4hob")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/shadow = 0.5
 shader_parameter/shadow_width = 0.0
-shader_parameter/shadow_color = Color(0.984314, 0, 0.466667, 0.560784)
+shader_parameter/shadow_color = Color(0, 0.8, 0.847059, 0.964706)
 shader_parameter/_specular_smoothness = 0.01
 shader_parameter/_specular_strength = 0.075
 shader_parameter/_glossiness = 0.1
@@ -68,20 +68,15 @@ shader_parameter/_rim_smoothness = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_38moo"]
 render_priority = 0
-shader = ExtResource("3_h4vs8")
+shader = ExtResource("3_knnki")
 shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/light_energy = 0.1
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.0
-shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/shadow = 0.217
+shader_parameter/shadow_color = Color(0.121569, 1, 0.588235, 1)
 shader_parameter/_specular_smoothness = 0.01
 shader_parameter/_specular_strength = 0.075
 shader_parameter/_glossiness = 0.1
-shader_parameter/shininess = 0.1
-shader_parameter/specular_intensity = 0.075
 shader_parameter/_rim_size = 0.5
 shader_parameter/_rim_smoothness = 0.01
-shader_parameter/rim_tolerance = 0.55
 
 [sub_resource type="BoxMesh" id="BoxMesh_kkgx6"]
 
@@ -173,7 +168,8 @@ bones/59/rotation = Quaternion(-0.518786, -0.471763, 0.516142, -0.491831)
 surface_material_override/0 = SubResource("ShaderMaterial_m51wb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17941, 2.28538, 2.75891)
+transform = Transform3D(0.600644, 0.622166, -0.502132, 4.19422e-08, 0.628045, 0.778177, 0.799517, -0.467407, 0.377231, -32.2196, 4.96232, 3.91783)
+light_color = Color(0.835294, 0.552941, 0.611765, 1)
 sky_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]

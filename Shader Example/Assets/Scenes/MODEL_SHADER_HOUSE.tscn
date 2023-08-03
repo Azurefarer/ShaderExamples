@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdajs0rmencqg"]
+
+[ext_resource type="Shader" path="res://Assets/Scenes/GROUND.gdshader" id="1_4jxwu"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_tuyhc"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4aadf"]
+lightmap_size_hint = Vector2i(127, 127)
+add_uv2 = true
+size = Vector2(25, 25)
+subdivide_width = 100
+subdivide_depth = 100
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wq2er"]
+noise_type = 3
+frequency = 0.284
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c36eo"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+normalize = false
+noise = SubResource("FastNoiseLite_wq2er")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lnu8x"]
+render_priority = 0
+shader = ExtResource("1_4jxwu")
+shader_parameter/normal = SubResource("NoiseTexture2D_c36eo")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GROUND" type="StaticBody3D" parent="."]
+
+[node name="WORLDBOUND" type="CollisionShape3D" parent="GROUND"]
+shape = SubResource("WorldBoundaryShape3D_tuyhc")
+
+[node name="SHADER" type="MeshInstance3D" parent="GROUND/WORLDBOUND"]
+mesh = SubResource("PlaneMesh_4aadf")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_lnu8x")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.983297, 0.162043, 0.0828804, 0.165813, 0.609761, 0.775047, 0.0750536, 0.775844, -0.626445, -8.15793, 7.98882, -3.68652)
+sky_mode = 1
