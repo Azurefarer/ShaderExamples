@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=16 format=3 uid="uid://q6nt5oyo0dii"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Test_1.gd" id="1_ahe7i"]
 [ext_resource type="Texture2D" uid="uid://dal1vwb47vnlu" path="res://Assets/Sprites/Elena_Stage_Sheet.png" id="1_fbphr"]
@@ -197,7 +197,7 @@ metadata/_edit_lock_ = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Ken/Afterimage"]
 material = SubResource("CanvasItemMaterial_8tvp5")
-position = Vector2(-54.6967, -121.223)
+position = Vector2(295.303, -2.223)
 process_material = SubResource("ParticleProcessMaterial_gg1lw")
 texture = ExtResource("2_t3hh5")
 
