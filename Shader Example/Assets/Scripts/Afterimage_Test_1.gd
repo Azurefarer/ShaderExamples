@@ -9,7 +9,8 @@ func _ready():
 	startPos = $Ken.position
 	camStartPos = $Camera2D.position
 	$ElenaStage/AnimationPlayer.play("BG")
-	$Ken/AnimationPlayer.play("Stance")
+	$Ken/KEN_ANIM.play("Stance")
+	$SubViewport/paletteKEN/PaletteKEN_ANIM.play("Stance")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,8 +22,10 @@ func _on_reset_pressed():
 	if superOngoing:
 		return
 	$Ken.position = startPos
+	$SubViewport/paletteKEN.position = startPos
 	$Camera2D.position = camStartPos
-	$Ken/AnimationPlayer.play("Stance")
+	$Ken/KEN_ANIM.play("Stance")
+	$SubViewport/paletteKEN/PaletteKEN_ANIM.play("Stance")
 	superOngoing = false
 
 
@@ -30,7 +33,9 @@ func _on_super_1_pressed():
 	if superOngoing:
 		return
 	superOngoing = true
-	$Ken/AnimationPlayer.play("Super1")
+	$Ken/KEN_ANIM.play("Super1")
+	$SubViewport/paletteKEN/PaletteKEN_ANIM.play("Super1")
 	await get_tree().create_timer(2.2).timeout
-	$Ken/AnimationPlayer.play("Stance")
+	$Ken/KEN_ANIM.play("Stance")
+	$SubViewport/paletteKEN/PaletteKEN_ANIM.play("Stance")
 	superOngoing = false

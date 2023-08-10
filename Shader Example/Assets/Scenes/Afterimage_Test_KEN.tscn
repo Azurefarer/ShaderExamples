@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjcvxu4dwdwvm"]
+[gd_scene load_steps=17 format=3 uid="uid://bjcvxu4dwdwvm"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Test_1.gd" id="1_6gjua"]
 [ext_resource type="Texture2D" uid="uid://cuwt4i7ylejrk" path="res://Assets/Sprites/Ken_Sheet.png" id="2_ydquh"]
 [ext_resource type="Shader" path="res://Assets/Shaders/PARTICLE_SHADER_TEST2.gdshader" id="3_600hj"]
-[ext_resource type="Script" path="res://Assets/Scripts/Afterimage.gd" id="4_mtvxb"]
+[ext_resource type="Texture2D" uid="uid://c218qxd50xfx8" path="res://clouds.jpg" id="4_825lq"]
 [ext_resource type="Texture2D" uid="uid://dal1vwb47vnlu" path="res://Assets/Sprites/Elena_Stage_Sheet.png" id="5_fxtqs"]
+[ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Palette.gd" id="5_jaa2l"]
 [ext_resource type="AudioStream" uid="uid://bqk7ycmdumyrg" path="res://Assets/BGM/Street Fighter 3 OST - Beats In My Head.mp3" id="6_dg745"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v3ih2"]
@@ -22,6 +23,7 @@ shader_parameter/red = 0.015
 shader_parameter/green = 0.185
 shader_parameter/blue = 0.565
 shader_parameter/tex_anim_offset = 0.0
+shader_parameter/palette = ExtResource("4_825lq")
 
 [sub_resource type="Animation" id="Animation_wb0fa"]
 resource_name = "Stance"
@@ -192,7 +194,7 @@ show_behind_parent = true
 material = SubResource("CanvasItemMaterial_v3ih2")
 emitting = false
 process_material = SubResource("ShaderMaterial_qorm4")
-script = ExtResource("4_mtvxb")
+script = ExtResource("5_jaa2l")
 metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Ken"]
@@ -203,7 +205,6 @@ libraries = {
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Ken"]
 material = SubResource("CanvasItemMaterial_dmkgk")
 process_material = SubResource("ParticleProcessMaterial_afgls")
-script = ExtResource("4_mtvxb")
 
 [node name="ElenaStage" type="Sprite2D" parent="."]
 z_index = -1

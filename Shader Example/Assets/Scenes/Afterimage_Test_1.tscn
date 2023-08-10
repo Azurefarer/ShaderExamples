@@ -1,39 +1,29 @@
-[gd_scene load_steps=16 format=3 uid="uid://q6nt5oyo0dii"]
+[gd_scene load_steps=20 format=3 uid="uid://bnr81vt155by3"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Test_1.gd" id="1_ahe7i"]
 [ext_resource type="Texture2D" uid="uid://dal1vwb47vnlu" path="res://Assets/Sprites/Elena_Stage_Sheet.png" id="1_fbphr"]
 [ext_resource type="Texture2D" uid="uid://cuwt4i7ylejrk" path="res://Assets/Sprites/Ken_Sheet.png" id="2_t3hh5"]
 [ext_resource type="Shader" path="res://Assets/Shaders/PARTICLE_SHADER_TEST2.gdshader" id="3_8xfvh"]
+[ext_resource type="Shader" path="res://Assets/Scenes/Palette_Swap_KEN.gdshader" id="3_dummj"]
 [ext_resource type="AudioStream" uid="uid://bqk7ycmdumyrg" path="res://Assets/BGM/Street Fighter 3 OST - Beats In My Head.mp3" id="3_rdnm3"]
-[ext_resource type="Script" path="res://Assets/Scripts/Afterimage.gd" id="4_i6ltu"]
+[ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Palette.gd" id="4_whyq5"]
+[ext_resource type="Script" path="res://Assets/Scripts/Afterimage.gd" id="5_aw0rv"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v3ih2"]
-particles_animation = true
-particles_anim_h_frames = 23
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qorm4"]
-shader = ExtResource("3_8xfvh")
-shader_parameter/fadeCont = false
-shader_parameter/fadeStep = 3.0
-shader_parameter/scale = 1.1
-shader_parameter/red = 0.065
-shader_parameter/green = 0.005
-shader_parameter/blue = 0.08
-shader_parameter/tex_anim_offset = 0.0
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8tvp5"]
-particles_animation = true
-particles_anim_h_frames = 23
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gg1lw"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3uohy"]
+shader = ExtResource("3_dummj")
+shader_parameter/numberOfColors = 12
+shader_parameter/C1 = Color(1, 0.133333, 0.843137, 1)
+shader_parameter/C2 = Color(1, 0, 0, 1)
+shader_parameter/C3 = Color(0, 0, 1, 1)
+shader_parameter/C4 = Color(0, 1, 0, 1)
+shader_parameter/C5 = Color(0.270588, 0.556863, 0.427451, 1)
+shader_parameter/C6 = Color(0.796078, 0.403922, 0.933333, 1)
+shader_parameter/C7 = Color(0.654902, 0.447059, 0.0745098, 1)
+shader_parameter/C8 = Color(0.439216, 0.509804, 0.12549, 1)
+shader_parameter/C9 = Color(0, 0.917647, 0.964706, 1)
+shader_parameter/C10 = Color(0.572549, 0.556863, 1, 1)
+shader_parameter/C11 = Color(0.988235, 0.52549, 0.419608, 1)
+shader_parameter/C12 = Color(0.411765, 0.235294, 0.0901961, 1)
 
 [sub_resource type="Animation" id="Animation_wb0fa"]
 resource_name = "Stance"
@@ -91,51 +81,39 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.45, 0.525, 0.6, 0.675, 0.7, 0.775, 0.85, 0.925, 1.125, 1.15, 1.55, 1.625, 1.7, 1.975, 2.125),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(42, 129), Vector2(42, 129), Vector2(68.545, 124.835), Vector2(86.86, 101.57), Vector2(91, 128), Vector2(91, 128), Vector2(115, 124.835), Vector2(127, 101.57), Vector2(135, 128), Vector2(135, 128), Vector2(150, 119), Vector2(162.632, -40), Vector2(165, -50), Vector2(166.134, -40), Vector2(169.556, 58), Vector2(172, 128)]
+"values": [Vector2(42, 129), Vector2(0, 129), Vector2(68.545, 124.835), Vector2(86.86, 101.57), Vector2(91, 128), Vector2(91, 128), Vector2(115, 124.835), Vector2(127, 101.57), Vector2(135, 128), Vector2(135, 128), Vector2(150, 119), Vector2(162.632, -40), Vector2(165, -50), Vector2(166.134, -40), Vector2(169.556, 58), Vector2(172, 128)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Camera2D:position")
+tracks/2/path = NodePath("../ElenaStage:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.075, 1.55, 1.775, 1.925, 2.05),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(150, 112), Vector2(150, 112), Vector2(150, -1.136), Vector2(150, 1.469), Vector2(150, 62.875), Vector2(150, 112)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../ElenaStage:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2, 0.225, 0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0.160784, 0.133333, 1, 1), Color(1, 1, 1, 1), Color(0.67451, 0, 0.282353, 1), Color(1, 1, 1, 1), Color(0.160784, 0.133333, 1, 1), Color(1, 1, 1, 1), Color(0.67451, 0, 0.282353, 1), Color(1, 1, 1, 1), Color(0.160784, 0.133333, 1, 1), Color(1, 1, 1, 1), Color(0.67451, 0, 0.282353, 1), Color(1, 1, 1, 1), Color(0.160784, 0.133333, 1, 1), Color(1, 1, 1, 1), Color(0.67451, 0, 0.282353, 1), Color(1, 1, 1, 1)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../ElenaStage:self_modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../ElenaStage:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.025, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0, 0.596078, 0.882353, 1), Color(1, 1, 1, 1)]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Afterimage:emitting")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Afterimage:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0.5, 1.95),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -147,6 +125,37 @@ _data = {
 "Stance": SubResource("Animation_wb0fa"),
 "Super1": SubResource("Animation_udees")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qorm4"]
+shader = ExtResource("3_8xfvh")
+shader_parameter/fadeCont = false
+shader_parameter/fadeStep = 3.0
+shader_parameter/scale = 1.1
+shader_parameter/red = 0.1
+shader_parameter/green = 0.1
+shader_parameter/blue = 0.1
+shader_parameter/tex_anim_offset = 0.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cyshs"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v3ih2"]
+particles_animation = true
+particles_anim_h_frames = 23
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8tvp5"]
+particles_animation = true
+particles_anim_h_frames = 23
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gg1lw"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
 
 [sub_resource type="Animation" id="Animation_l212d"]
 resource_name = "BG"
@@ -177,42 +186,70 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_ahe7i")
 
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="paletteKEN" type="Sprite2D" parent="SubViewport"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_3uohy")
+position = Vector2(100, 200)
+texture = ExtResource("2_t3hh5")
+hframes = 23
+frame = 6
+
+[node name="PaletteKEN_ANIM" type="AnimationPlayer" parent="SubViewport/paletteKEN"]
+libraries = {
+"": SubResource("AnimationLibrary_7edum")
+}
+
 [node name="Ken" type="Sprite2D" parent="."]
 z_index = 10
 texture_filter = 1
-position = Vector2(59.6967, 126.223)
+position = Vector2(42, 129)
 texture = ExtResource("2_t3hh5")
 hframes = 23
+frame = 6
+
+[node name="AfterimagePalette" type="GPUParticles2D" parent="Ken"]
+show_behind_parent = true
+amount = 10
+process_material = SubResource("ShaderMaterial_qorm4")
+texture = SubResource("ViewportTexture_cyshs")
+preprocess = 0.5
+speed_scale = 1.5
+script = ExtResource("4_whyq5")
+metadata/_edit_lock_ = true
 
 [node name="Afterimage" type="GPUParticles2D" parent="Ken"]
+visible = false
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_v3ih2")
-emitting = false
 amount = 10
 process_material = SubResource("ShaderMaterial_qorm4")
 preprocess = 0.5
 speed_scale = 1.5
-script = ExtResource("4_i6ltu")
+script = ExtResource("5_aw0rv")
 metadata/_edit_lock_ = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Ken/Afterimage"]
+visible = false
 material = SubResource("CanvasItemMaterial_8tvp5")
 position = Vector2(295.303, -2.223)
 process_material = SubResource("ParticleProcessMaterial_gg1lw")
 texture = ExtResource("2_t3hh5")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Ken"]
+[node name="KEN_ANIM" type="AnimationPlayer" parent="Ken"]
 libraries = {
 "": SubResource("AnimationLibrary_7edum")
 }
 
 [node name="ElenaStage" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 texture_filter = 1
 position = Vector2(199, -27)
 texture = ExtResource("1_fbphr")
 hframes = 16
-frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ElenaStage"]
 speed_scale = 0.35
