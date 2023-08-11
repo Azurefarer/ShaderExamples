@@ -1,13 +1,25 @@
-[gd_scene load_steps=23 format=3 uid="uid://co6jjmb7shdcr"]
+[gd_scene load_steps=27 format=3 uid="uid://co6jjmb7shdcr"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/GROUND.gdshader" id="1_xd8b0"]
 [ext_resource type="Script" path="res://Assets/Scripts/entity.gd" id="2_0rde8"]
-[ext_resource type="Shader" path="res://Assets/Shaders/WINDOW.gdshader" id="3_8gtdo"]
 [ext_resource type="Shader" path="res://Assets/Scenes/SHADER_HOUSE_BG.gdshader" id="4_7315r"]
 [ext_resource type="Texture2D" uid="uid://c218qxd50xfx8" path="res://clouds.jpg" id="5_0tpb4"]
 [ext_resource type="PackedScene" uid="uid://duexlivuy86ts" path="res://Assets/3D/Barn.fbx" id="5_7acfw"]
 [ext_resource type="Shader" path="res://Assets/Scenes/SHADER_HOUSE_BARN.gdshader" id="6_02cus"]
 [ext_resource type="Shader" path="res://Assets/Scenes/SHADER_HOUSE_ROOF.gdshader" id="7_476xf"]
+[ext_resource type="PlaneMesh" uid="uid://dow1hl8mfwcp7" path="res://Assets/Resources/Big_Window_Mesh.tres" id="8_weive"]
+[ext_resource type="Shader" path="res://Assets/Shaders/SnellLaw.gdshader" id="9_m3ei3"]
+[ext_resource type="PlaneMesh" uid="uid://dtiqswh5vyge7" path="res://Assets/Resources/Window_Mesh.tres" id="10_pqlrh"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_r01c7"]
+panorama = ExtResource("5_0tpb4")
+
+[sub_resource type="Sky" id="Sky_ihgl1"]
+sky_material = SubResource("PanoramaSkyMaterial_r01c7")
+
+[sub_resource type="Environment" id="Environment_nat4h"]
+background_mode = 2
+sky = SubResource("Sky_ihgl1")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_o6pb8"]
 
@@ -64,18 +76,20 @@ shader = ExtResource("6_02cus")
 render_priority = 0
 shader = ExtResource("7_476xf")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_5tdtw"]
-size = Vector2(5.6, 5.9)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2gkiq"]
 render_priority = 0
-shader = ExtResource("3_8gtdo")
+shader = ExtResource("9_m3ei3")
+shader_parameter/n1 = 1.33
+shader_parameter/n2 = 1.0
 shader_parameter/window_tint = Color(0.705882, 0.992157, 0.843137, 1)
 shader_parameter/bluriness = 1.0
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nat4h")
 
 [node name="entity" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.6547, 7.31326, 0)
@@ -112,12 +126,13 @@ omni_range = 2.82663
 
 [node name="BG" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 150)
+visible = false
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_13nfc")
 surface_material_override/0 = SubResource("ShaderMaterial_4abnn")
 
 [node name="Barn" parent="." instance=ExtResource("5_7acfw")]
-transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, 0, 2, 0)
+transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, 0, 0.648, 0)
 
 [node name="Barn" parent="Barn/RootNode" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_iv5qc")
@@ -129,56 +144,56 @@ surface_material_override/0 = SubResource("ShaderMaterial_c2vdb")
 [node name="Windows" type="Node3D" parent="."]
 
 [node name="BigWindow" type="MeshInstance3D" parent="Windows"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.00845265, 13.0963, 14.7513)
-mesh = SubResource("PlaneMesh_5tdtw")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.00845265, 11.7438, 14.7513)
+mesh = ExtResource("8_weive")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window1" type="MeshInstance3D" parent="Windows"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 4.98798, -8.45809)
-mesh = SubResource("PlaneMesh_5tdtw")
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 3.63545, -8.45809)
+mesh = ExtResource("10_pqlrh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window2" type="MeshInstance3D" parent="Windows"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 4.98798, -2.81522)
-mesh = SubResource("PlaneMesh_5tdtw")
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 3.63545, -2.81522)
+mesh = ExtResource("10_pqlrh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window3" type="MeshInstance3D" parent="Windows"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 4.98798, 2.83659)
-mesh = SubResource("PlaneMesh_5tdtw")
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 3.63545, 2.83659)
+mesh = ExtResource("10_pqlrh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window4" type="MeshInstance3D" parent="Windows"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 4.98798, 8.41224)
-mesh = SubResource("PlaneMesh_5tdtw")
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 3.63545, 8.41224)
+mesh = ExtResource("10_pqlrh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window5" type="MeshInstance3D" parent="Windows"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -8.3341, 4.98798, 8.41224)
-mesh = SubResource("PlaneMesh_5tdtw")
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -8.34009, 3.63545, 8.41224)
+mesh = ExtResource("10_pqlrh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window6" type="MeshInstance3D" parent="Windows"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -8.3341, 4.98798, 2.80111)
-mesh = SubResource("PlaneMesh_5tdtw")
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -8.34009, 3.63545, 2.80111)
+mesh = ExtResource("10_pqlrh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window7" type="MeshInstance3D" parent="Windows"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -8.3341, 4.98798, -2.84829)
-mesh = SubResource("PlaneMesh_5tdtw")
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -8.34009, 3.63545, -2.81711)
+mesh = ExtResource("10_pqlrh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window8" type="MeshInstance3D" parent="Windows"]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -8.3341, 4.98798, -8.44354)
-mesh = SubResource("PlaneMesh_5tdtw")
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -8.34009, 3.63545, -8.44354)
+mesh = ExtResource("10_pqlrh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
