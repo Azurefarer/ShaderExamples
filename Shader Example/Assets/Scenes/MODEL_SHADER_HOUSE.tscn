@@ -1,18 +1,18 @@
-[gd_scene load_steps=27 format=3 uid="uid://co6jjmb7shdcr"]
+[gd_scene load_steps=27 format=3 uid="uid://c661dhs2h2j3f"]
 
-[ext_resource type="Shader" path="res://Assets/Shaders/GROUND.gdshader" id="1_xd8b0"]
+[ext_resource type="Texture2D" uid="uid://c218qxd50xfx8" path="res://Assets/Sprites/clouds.jpg" id="1_coiaj"]
 [ext_resource type="Script" path="res://Assets/Scripts/entity.gd" id="2_0rde8"]
-[ext_resource type="Shader" path="res://Assets/Scenes/SHADER_HOUSE_BG.gdshader" id="4_7315r"]
-[ext_resource type="Texture2D" uid="uid://c218qxd50xfx8" path="res://clouds.jpg" id="5_0tpb4"]
-[ext_resource type="PackedScene" uid="uid://duexlivuy86ts" path="res://Assets/3D/Barn.fbx" id="5_7acfw"]
-[ext_resource type="Shader" path="res://Assets/Scenes/SHADER_HOUSE_BARN.gdshader" id="6_02cus"]
-[ext_resource type="Shader" path="res://Assets/Scenes/SHADER_HOUSE_ROOF.gdshader" id="7_476xf"]
-[ext_resource type="PlaneMesh" uid="uid://dow1hl8mfwcp7" path="res://Assets/Resources/Big_Window_Mesh.tres" id="8_weive"]
-[ext_resource type="Shader" path="res://Assets/Shaders/SnellLaw.gdshader" id="9_m3ei3"]
-[ext_resource type="PlaneMesh" uid="uid://dtiqswh5vyge7" path="res://Assets/Resources/Window_Mesh.tres" id="10_pqlrh"]
+[ext_resource type="Shader" path="res://Assets/Shaders/ShaderHouse/GROUND.gdshader" id="3_kt3au"]
+[ext_resource type="Shader" path="res://Assets/Shaders/ShaderHouse/SHADER_HOUSE_BG.gdshader" id="4_ejtj5"]
+[ext_resource type="PlaneMesh" uid="uid://dow1hl8mfwcp7" path="res://Assets/Resources/Mesh/Big_Window_Mesh.tres" id="5_oxoej"]
+[ext_resource type="Shader" path="res://Assets/Shaders/ShaderHouse/SnellLaw.gdshader" id="6_5nrgs"]
+[ext_resource type="PlaneMesh" uid="uid://dtiqswh5vyge7" path="res://Assets/Resources/Mesh/Window_Mesh.tres" id="7_d5eu1"]
+[ext_resource type="PackedScene" uid="uid://dydebf14xmv0q" path="res://Assets/3D/BarnUVtest.fbx" id="8_uorf0"]
+[ext_resource type="Shader" path="res://Assets/Shaders/ShaderHouse/SHADER_HOUSE_FLOOR.gdshader" id="9_y518g"]
+[ext_resource type="Texture2D" uid="uid://dbvtlm878pklc" path="res://Assets/Sprites/woodWalls.png" id="10_eq6el"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_r01c7"]
-panorama = ExtResource("5_0tpb4")
+panorama = ExtResource("1_coiaj")
 
 [sub_resource type="Sky" id="Sky_ihgl1"]
 sky_material = SubResource("PanoramaSkyMaterial_r01c7")
@@ -52,7 +52,7 @@ noise = SubResource("FastNoiseLite_d8pta")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lnu8x"]
 render_priority = 0
-shader = ExtResource("1_xd8b0")
+shader = ExtResource("3_kt3au")
 shader_parameter/soil1 = Color(0.572549, 0.407843, 0.160784, 1)
 shader_parameter/soil2 = Color(0.917647, 0.713726, 0.309804, 1)
 shader_parameter/grass = Color(0.486275, 0.988235, 0, 1)
@@ -65,24 +65,29 @@ orientation = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4abnn"]
 render_priority = 0
-shader = ExtResource("4_7315r")
-shader_parameter/BG = ExtResource("5_0tpb4")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_iv5qc"]
-render_priority = 0
-shader = ExtResource("6_02cus")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c2vdb"]
-render_priority = 0
-shader = ExtResource("7_476xf")
+shader = ExtResource("4_ejtj5")
+shader_parameter/BG = ExtResource("1_coiaj")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2gkiq"]
 render_priority = 0
-shader = ExtResource("9_m3ei3")
+shader = ExtResource("6_5nrgs")
 shader_parameter/n1 = 1.33
 shader_parameter/n2 = 1.0
 shader_parameter/window_tint = null
 shader_parameter/bluriness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_baucv"]
+render_priority = 0
+shader = ExtResource("6_5nrgs")
+shader_parameter/n1 = 1.33
+shader_parameter/n2 = 1.0
+shader_parameter/window_tint = null
+shader_parameter/bluriness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_42fdl"]
+render_priority = 0
+shader = ExtResource("9_y518g")
+shader_parameter/walls = ExtResource("10_eq6el")
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -131,70 +136,66 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_13nfc")
 surface_material_override/0 = SubResource("ShaderMaterial_4abnn")
 
-[node name="Barn" parent="." instance=ExtResource("5_7acfw")]
-transform = Transform3D(-5, 0, -4.37114e-07, 0, 5, 0, 4.37114e-07, 0, -5, 0, 0.648, 0)
-
-[node name="Barn" parent="Barn/RootNode" index="0"]
-surface_material_override/0 = SubResource("ShaderMaterial_iv5qc")
-
-[node name="Roof" parent="Barn/RootNode" index="2"]
-transform = Transform3D(166.89, -8.74228e-06, 2.60114e-05, -1.459e-05, -100, -4.49266e-05, 1.459e-05, 1.50996e-05, -297.536, 0, 1.93545, 0)
-surface_material_override/0 = SubResource("ShaderMaterial_c2vdb")
-
 [node name="Windows" type="Node3D" parent="."]
 
 [node name="BigWindow" type="MeshInstance3D" parent="Windows"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.00845265, 11.7438, 14.7513)
-mesh = ExtResource("8_weive")
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0.008, 11.744, -14.751)
+mesh = ExtResource("5_oxoej")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window1" type="MeshInstance3D" parent="Windows"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 3.63545, -8.45809)
-mesh = ExtResource("10_pqlrh")
+mesh = ExtResource("7_d5eu1")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window2" type="MeshInstance3D" parent="Windows"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 3.63545, -2.81522)
-mesh = ExtResource("10_pqlrh")
+mesh = ExtResource("7_d5eu1")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window3" type="MeshInstance3D" parent="Windows"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 3.63545, 2.81922)
-mesh = ExtResource("10_pqlrh")
+mesh = ExtResource("7_d5eu1")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window4" type="MeshInstance3D" parent="Windows"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 3.63545, 8.43145)
-mesh = ExtResource("10_pqlrh")
+mesh = ExtResource("7_d5eu1")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window5" type="MeshInstance3D" parent="Windows"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -8.34009, 3.63545, 8.41224)
-mesh = ExtResource("10_pqlrh")
+mesh = ExtResource("7_d5eu1")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
+surface_material_override/0 = SubResource("ShaderMaterial_baucv")
 
 [node name="Window6" type="MeshInstance3D" parent="Windows"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -8.34009, 3.63545, 2.80111)
-mesh = ExtResource("10_pqlrh")
+mesh = ExtResource("7_d5eu1")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window7" type="MeshInstance3D" parent="Windows"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -8.34009, 3.63545, -2.81711)
-mesh = ExtResource("10_pqlrh")
+mesh = ExtResource("7_d5eu1")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window8" type="MeshInstance3D" parent="Windows"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -8.34009, 3.63545, -8.44354)
-mesh = ExtResource("10_pqlrh")
+mesh = ExtResource("7_d5eu1")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
-[editable path="Barn"]
+[node name="BarnUVtest" parent="." instance=ExtResource("8_uorf0")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.648, 0)
+
+[node name="Floor" parent="BarnUVtest/RootNode" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_42fdl")
+
+[editable path="BarnUVtest"]

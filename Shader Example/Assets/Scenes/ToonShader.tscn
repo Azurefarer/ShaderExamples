@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://vjsq15r5bfn0"]
+[gd_scene load_steps=16 format=3]
 
-[ext_resource type="Shader" path="res://Assets/Shaders/ToonShaderMODEL.gdshader" id="1_c4hob"]
-[ext_resource type="PackedScene" uid="uid://vt12eftjyx6c" path="res://person.fbx" id="2_ukxs3"]
-[ext_resource type="Shader" path="res://Assets/Shaders/ToonShaderTEST2.gdshader" id="3_cq378"]
-[ext_resource type="Material" uid="uid://bcj10vwcbgybt" path="res://Assets/Shaders/ShaderMaterialTest.tres" id="4_udq0n"]
+[ext_resource type="Shader" path="res://Assets/Shaders/ToonShader/ToonShaderMODEL.gdshader" id="1_c4hob"]
+[ext_resource type="PackedScene" uid="uid://vt12eftjyx6c" path="res://Assets/3D/person.fbx" id="2_ukxs3"]
+[ext_resource type="Shader" path="res://Assets/Shaders/ToonShader/ToonShaderTEST2.gdshader" id="3_cq378"]
+[ext_resource type="Material" path="res://Assets/Resources/ShaderMaterial/ShaderMaterialTest.tres" id="4_udq0n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_51gsj"]
 render_priority = 0

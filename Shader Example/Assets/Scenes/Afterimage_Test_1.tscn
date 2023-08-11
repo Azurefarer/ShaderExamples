@@ -1,11 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://bnr81vt155by3"]
+[gd_scene load_steps=20 format=3 uid="uid://tgnhd8j0rv4h"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Test_1.gd" id="1_ahe7i"]
 [ext_resource type="Texture2D" uid="uid://dal1vwb47vnlu" path="res://Assets/Sprites/Elena_Stage_Sheet.png" id="1_fbphr"]
 [ext_resource type="Texture2D" uid="uid://cuwt4i7ylejrk" path="res://Assets/Sprites/Ken_Sheet.png" id="2_t3hh5"]
-[ext_resource type="Shader" path="res://Assets/Shaders/PARTICLE_SHADER_TEST2.gdshader" id="3_8xfvh"]
-[ext_resource type="Shader" path="res://Assets/Scenes/Palette_Swap_KEN.gdshader" id="3_dummj"]
+[ext_resource type="Shader" path="res://Assets/Shaders/AfterImage/Palette_Swap_KEN.gdshader" id="3_dummj"]
 [ext_resource type="AudioStream" uid="uid://bqk7ycmdumyrg" path="res://Assets/BGM/Street Fighter 3 OST - Beats In My Head.mp3" id="3_rdnm3"]
+[ext_resource type="Shader" path="res://Assets/Shaders/AfterImage/PARTICLE_SHADER_TEST2.gdshader" id="4_jrs0j"]
 [ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Palette.gd" id="4_whyq5"]
 [ext_resource type="Script" path="res://Assets/Scripts/Afterimage.gd" id="5_aw0rv"]
 
@@ -127,7 +127,7 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qorm4"]
-shader = ExtResource("3_8xfvh")
+shader = ExtResource("4_jrs0j")
 shader_parameter/fadeCont = false
 shader_parameter/fadeStep = 3.0
 shader_parameter/scale = 1.1

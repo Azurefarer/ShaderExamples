@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://vt12eftjyx6c"
-path="res://.godot/imported/person.fbx-101d470371e2b39cf9cd9c156d5bb222.scn"
+uid="uid://dydebf14xmv0q"
+path="res://.godot/imported/BarnUVtest.fbx-815b63e87348cc48cdbdacc621d1817e.scn"
 
 [deps]
 
-source_file="res://person.fbx"
-dest_files=["res://.godot/imported/person.fbx-101d470371e2b39cf9cd9c156d5bb222.scn"]
+source_file="res://Assets/3D/BarnUVtest.fbx"
+dest_files=["res://.godot/imported/BarnUVtest.fbx-815b63e87348cc48cdbdacc621d1817e.scn"]
 
 [params]
 

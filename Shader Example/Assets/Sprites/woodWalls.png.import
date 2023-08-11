@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c218qxd50xfx8"
-path.s3tc="res://.godot/imported/clouds.jpg-5d21caa017ed4bb513ce62fdcef27b7d.s3tc.ctex"
+uid="uid://dbvtlm878pklc"
+path.s3tc="res://.godot/imported/woodWalls.png-0d06e783b7394fd353be3e076066ede8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://clouds.jpg"
-dest_files=["res://.godot/imported/clouds.jpg-5d21caa017ed4bb513ce62fdcef27b7d.s3tc.ctex"]
+source_file="res://Assets/Sprites/woodWalls.png"
+dest_files=["res://.godot/imported/woodWalls.png-0d06e783b7394fd353be3e076066ede8.s3tc.ctex"]
 
 [params]
 
