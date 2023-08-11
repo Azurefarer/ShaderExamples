@@ -81,7 +81,7 @@ render_priority = 0
 shader = ExtResource("9_m3ei3")
 shader_parameter/n1 = 1.33
 shader_parameter/n2 = 1.0
-shader_parameter/window_tint = Color(0.705882, 0.992157, 0.843137, 1)
+shader_parameter/window_tint = null
 shader_parameter/bluriness = 1.0
 
 [node name="Control" type="Control"]
@@ -162,13 +162,13 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window3" type="MeshInstance3D" parent="Windows"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 3.63545, 2.83659)
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 3.63545, 2.81922)
 mesh = ExtResource("10_pqlrh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")
 
 [node name="Window4" type="MeshInstance3D" parent="Windows"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 3.63545, 8.41224)
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 8.3418, 3.63545, 8.43145)
 mesh = ExtResource("10_pqlrh")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_2gkiq")

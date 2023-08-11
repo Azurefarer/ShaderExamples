@@ -21,18 +21,18 @@ vec3 rot3(vec3 baseV, float theta_i, float theta_r) {
 }
 
 void vertex() {
-	NORMAL = normalize(MODEL_MATRIX * vec4(NORMAL, 0.0)).xyz;
+
 }
 
 void fragment() {
-	vec3 viewWorld = vec3((INV_VIEW_MATRIX * vec4(VIEW, 0.0)).xyz);
+// Critical Angle
+	float critical_angle = asin(n2/n1);
 // Snell's Law
-	float incident_angle = acos(dot(NORMAL, viewWorld));
-	float refrac_angle = asin((n1 / n2) * sin(incident_angle));
+	float incident_angle = acos(dot(NORMAL, VIEW));
+	float refrac_angle = asin((n1 / n2) * sin(clamp(incident_angle, 0.0, critical_angle)));
 	
-//	vec3 refrac_unit_CDW = rot3(unit_CDW, incident_angle, refrac_angle);
-	vec3 refrac_unit_CDW = rot3(NORMAL, refrac_angle, 0.0);
-	vec3 refrac_offset = .01 * (refrac_unit_CDW - viewWorld);
+	vec3 refrac_unit_CDW = rot3(VIEW, incident_angle, refrac_angle);
+	vec3 refrac_offset = .01 * (refrac_unit_CDW - VIEW);
 	vec2 refrac_SCREEN_UV = vec2(SCREEN_UV.x + refrac_offset.x, SCREEN_UV.y + refrac_offset.y);
 	
 	vec3 screen_texture_refrac = textureLod(screen, refrac_SCREEN_UV, bluriness).rgb;

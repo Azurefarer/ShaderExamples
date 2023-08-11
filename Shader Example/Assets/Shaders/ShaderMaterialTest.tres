@@ -5,3 +5,4 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_uvr55")
+shader_parameter/color = Color(0.772549, 0.694118, 0.854902, 1)
