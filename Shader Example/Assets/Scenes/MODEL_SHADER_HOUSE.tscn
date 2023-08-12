@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c661dhs2h2j3f"]
+[gd_scene load_steps=27 format=3 uid="uid://co6jjmb7shdcr"]
 
 [ext_resource type="Texture2D" uid="uid://c218qxd50xfx8" path="res://Assets/Sprites/clouds.jpg" id="1_coiaj"]
 [ext_resource type="Script" path="res://Assets/Scripts/entity.gd" id="2_0rde8"]

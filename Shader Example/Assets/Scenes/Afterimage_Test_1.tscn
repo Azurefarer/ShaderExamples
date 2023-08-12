@@ -1,13 +1,37 @@
-[gd_scene load_steps=20 format=3 uid="uid://tgnhd8j0rv4h"]
+[gd_scene load_steps=18 format=3 uid="uid://q6nt5oyo0dii"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Test_1.gd" id="1_ahe7i"]
 [ext_resource type="Texture2D" uid="uid://dal1vwb47vnlu" path="res://Assets/Sprites/Elena_Stage_Sheet.png" id="1_fbphr"]
+[ext_resource type="Script" path="res://Assets/Scripts/AfterImage/Afterimage_Helper.gd" id="1_r6jo1"]
 [ext_resource type="Texture2D" uid="uid://cuwt4i7ylejrk" path="res://Assets/Sprites/Ken_Sheet.png" id="2_t3hh5"]
 [ext_resource type="Shader" path="res://Assets/Shaders/AfterImage/Palette_Swap_KEN.gdshader" id="3_dummj"]
 [ext_resource type="AudioStream" uid="uid://bqk7ycmdumyrg" path="res://Assets/BGM/Street Fighter 3 OST - Beats In My Head.mp3" id="3_rdnm3"]
 [ext_resource type="Shader" path="res://Assets/Shaders/AfterImage/PARTICLE_SHADER_TEST2.gdshader" id="4_jrs0j"]
-[ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Palette.gd" id="4_whyq5"]
-[ext_resource type="Script" path="res://Assets/Scripts/Afterimage.gd" id="5_aw0rv"]
+[ext_resource type="Script" path="res://Assets/Scripts/AfterImage/Afterimage.gd" id="4_scb2w"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v3ih2"]
+particles_animation = true
+particles_anim_h_frames = 23
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qorm4"]
+shader = ExtResource("4_jrs0j")
+shader_parameter/fadeCont = false
+shader_parameter/fadeStep = 3.0
+shader_parameter/scale = 1.1
+shader_parameter/red = 0.1
+shader_parameter/green = 0.1
+shader_parameter/blue = 0.1
+shader_parameter/tex_anim_offset = 0.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_166dq"]
+particles_animation = true
+particles_anim_h_frames = 23
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cyshs"]
+viewport_path = NodePath("Ken/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3uohy"]
 shader = ExtResource("3_dummj")
@@ -51,7 +75,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 
@@ -81,7 +105,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.45, 0.525, 0.6, 0.675, 0.7, 0.775, 0.85, 0.925, 1.125, 1.15, 1.55, 1.625, 1.7, 1.975, 2.125),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(42, 129), Vector2(0, 129), Vector2(68.545, 124.835), Vector2(86.86, 101.57), Vector2(91, 128), Vector2(91, 128), Vector2(115, 124.835), Vector2(127, 101.57), Vector2(135, 128), Vector2(135, 128), Vector2(150, 119), Vector2(162.632, -40), Vector2(165, -50), Vector2(166.134, -40), Vector2(169.556, 58), Vector2(172, 128)]
+"values": [Vector2(42, 129), Vector2(42, 129), Vector2(68.545, 124.835), Vector2(86.86, 101.57), Vector2(91, 128), Vector2(91, 128), Vector2(115, 124.835), Vector2(127, 101.57), Vector2(135, 128), Vector2(135, 128), Vector2(150, 119), Vector2(162.632, -40), Vector2(165, -50), Vector2(166.134, -40), Vector2(169.556, 58), Vector2(172, 128)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -116,6 +140,30 @@ tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0.5, 1.95),
 "transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SubViewport/PaletteSwapped:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AfterimagePalette:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.525, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
 }
@@ -125,37 +173,6 @@ _data = {
 "Stance": SubResource("Animation_wb0fa"),
 "Super1": SubResource("Animation_udees")
 }
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qorm4"]
-shader = ExtResource("4_jrs0j")
-shader_parameter/fadeCont = false
-shader_parameter/fadeStep = 3.0
-shader_parameter/scale = 1.1
-shader_parameter/red = 0.1
-shader_parameter/green = 0.1
-shader_parameter/blue = 0.1
-shader_parameter/tex_anim_offset = 0.0
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_cyshs"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v3ih2"]
-particles_animation = true
-particles_anim_h_frames = 23
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8tvp5"]
-particles_animation = true
-particles_anim_h_frames = 23
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gg1lw"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 0, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
 
 [sub_resource type="Animation" id="Animation_l212d"]
 resource_name = "BG"
@@ -184,23 +201,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_ahe7i")
-
-[node name="SubViewport" type="SubViewport" parent="."]
-transparent_bg = true
-
-[node name="paletteKEN" type="Sprite2D" parent="SubViewport"]
-texture_filter = 1
-material = SubResource("ShaderMaterial_3uohy")
-position = Vector2(100, 200)
-texture = ExtResource("2_t3hh5")
-hframes = 23
-frame = 6
-
-[node name="PaletteKEN_ANIM" type="AnimationPlayer" parent="SubViewport/paletteKEN"]
-libraries = {
-"": SubResource("AnimationLibrary_7edum")
-}
+script = ExtResource("1_r6jo1")
 
 [node name="Ken" type="Sprite2D" parent="."]
 z_index = 10
@@ -210,16 +211,6 @@ texture = ExtResource("2_t3hh5")
 hframes = 23
 frame = 6
 
-[node name="AfterimagePalette" type="GPUParticles2D" parent="Ken"]
-show_behind_parent = true
-amount = 10
-process_material = SubResource("ShaderMaterial_qorm4")
-texture = SubResource("ViewportTexture_cyshs")
-preprocess = 0.5
-speed_scale = 1.5
-script = ExtResource("4_whyq5")
-metadata/_edit_lock_ = true
-
 [node name="Afterimage" type="GPUParticles2D" parent="Ken"]
 visible = false
 show_behind_parent = true
@@ -228,23 +219,39 @@ amount = 10
 process_material = SubResource("ShaderMaterial_qorm4")
 preprocess = 0.5
 speed_scale = 1.5
-script = ExtResource("5_aw0rv")
+script = ExtResource("4_scb2w")
 metadata/_edit_lock_ = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Ken/Afterimage"]
-visible = false
-material = SubResource("CanvasItemMaterial_8tvp5")
-position = Vector2(295.303, -2.223)
-process_material = SubResource("ParticleProcessMaterial_gg1lw")
-texture = ExtResource("2_t3hh5")
+[node name="AfterimagePalette" type="GPUParticles2D" parent="Ken"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_166dq")
+emitting = false
+amount = 10
+process_material = SubResource("ShaderMaterial_qorm4")
+texture = SubResource("ViewportTexture_cyshs")
+preprocess = 0.5
+speed_scale = 1.5
+script = ExtResource("4_scb2w")
+viewportTexture = true
+metadata/_edit_lock_ = true
 
-[node name="KEN_ANIM" type="AnimationPlayer" parent="Ken"]
+[node name="SubViewport" type="SubViewport" parent="Ken"]
+transparent_bg = true
+size = Vector2i(3772, 164)
+
+[node name="PaletteSwapped" type="Sprite2D" parent="Ken/SubViewport"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_3uohy")
+position = Vector2(1886, 82)
+texture = ExtResource("2_t3hh5")
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ken"]
 libraries = {
 "": SubResource("AnimationLibrary_7edum")
 }
 
 [node name="ElenaStage" type="Sprite2D" parent="."]
-visible = false
 z_index = -1
 texture_filter = 1
 position = Vector2(199, -27)
