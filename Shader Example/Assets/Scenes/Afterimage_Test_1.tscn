@@ -1,12 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://q6nt5oyo0dii"]
+[gd_scene load_steps=18 format=3 uid="uid://ctji5olt4faa3"]
 
 [ext_resource type="Texture2D" uid="uid://dal1vwb47vnlu" path="res://Assets/Sprites/Elena_Stage_Sheet.png" id="1_fbphr"]
-[ext_resource type="Script" path="res://Assets/Scripts/AfterImage/Afterimage_Helper.gd" id="1_r6jo1"]
+[ext_resource type="Script" path="res://Assets/Scripts/AfterImage/Afterimage_Test_Helper.gd" id="1_s4fsa"]
 [ext_resource type="Texture2D" uid="uid://cuwt4i7ylejrk" path="res://Assets/Sprites/Ken_Sheet.png" id="2_t3hh5"]
-[ext_resource type="Shader" path="res://Assets/Shaders/AfterImage/Palette_Swap_KEN.gdshader" id="3_dummj"]
+[ext_resource type="Shader" path="res://Assets/Shaders/AfterImage/AfterimageParticleShader.gdshader" id="3_51b66"]
 [ext_resource type="AudioStream" uid="uid://bqk7ycmdumyrg" path="res://Assets/BGM/Street Fighter 3 OST - Beats In My Head.mp3" id="3_rdnm3"]
-[ext_resource type="Shader" path="res://Assets/Shaders/AfterImage/PARTICLE_SHADER_TEST2.gdshader" id="4_jrs0j"]
-[ext_resource type="Script" path="res://Assets/Scripts/AfterImage/Afterimage.gd" id="4_scb2w"]
+[ext_resource type="Script" path="res://Assets/Scripts/AfterImage/Afterimage_Entity.gd" id="4_g4bp7"]
+[ext_resource type="Shader" path="res://Assets/Shaders/PaletteSwap/12stepPaletteSwap.gdshader" id="5_e0ng6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v3ih2"]
 particles_animation = true
@@ -15,7 +15,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qorm4"]
-shader = ExtResource("4_jrs0j")
+shader = ExtResource("3_51b66")
 shader_parameter/fadeCont = false
 shader_parameter/fadeStep = 3.0
 shader_parameter/scale = 1.1
@@ -34,20 +34,20 @@ particles_anim_loop = false
 viewport_path = NodePath("Ken/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3uohy"]
-shader = ExtResource("3_dummj")
+shader = ExtResource("5_e0ng6")
 shader_parameter/numberOfColors = 12
-shader_parameter/C1 = Color(1, 0.133333, 0.843137, 1)
-shader_parameter/C2 = Color(1, 0, 0, 1)
-shader_parameter/C3 = Color(0, 0, 1, 1)
-shader_parameter/C4 = Color(0, 1, 0, 1)
-shader_parameter/C5 = Color(0.270588, 0.556863, 0.427451, 1)
-shader_parameter/C6 = Color(0.796078, 0.403922, 0.933333, 1)
-shader_parameter/C7 = Color(0.654902, 0.447059, 0.0745098, 1)
-shader_parameter/C8 = Color(0.439216, 0.509804, 0.12549, 1)
-shader_parameter/C9 = Color(0, 0.917647, 0.964706, 1)
-shader_parameter/C10 = Color(0.572549, 0.556863, 1, 1)
-shader_parameter/C11 = Color(0.988235, 0.52549, 0.419608, 1)
-shader_parameter/C12 = Color(0.411765, 0.235294, 0.0901961, 1)
+shader_parameter/C1 = Color(0.0509804, 0, 0.427451, 1)
+shader_parameter/C2 = Color(0.0313726, 0, 0.435294, 1)
+shader_parameter/C3 = Color(0.0745098, 0, 0.521569, 1)
+shader_parameter/C4 = Color(0.0941176, 0, 0.603922, 1)
+shader_parameter/C5 = Color(0.0941176, 0, 0.603922, 1)
+shader_parameter/C6 = Color(0.117647, 0, 0.717647, 1)
+shader_parameter/C7 = Color(0.133333, 0, 0.796078, 1)
+shader_parameter/C8 = Color(0.156863, 0, 0.898039, 1)
+shader_parameter/C9 = Color(0.176471, 0, 0.988235, 1)
+shader_parameter/C10 = Color(0.2, 0.223529, 1, 1)
+shader_parameter/C11 = Color(0.286275, 0.4, 1, 1)
+shader_parameter/C12 = Color(0.494118, 0.611765, 1, 1)
 
 [sub_resource type="Animation" id="Animation_wb0fa"]
 resource_name = "Stance"
@@ -201,7 +201,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_r6jo1")
+script = ExtResource("1_s4fsa")
 
 [node name="Ken" type="Sprite2D" parent="."]
 z_index = 10
@@ -209,17 +209,17 @@ texture_filter = 1
 position = Vector2(42, 129)
 texture = ExtResource("2_t3hh5")
 hframes = 23
-frame = 6
 
 [node name="Afterimage" type="GPUParticles2D" parent="Ken"]
 visible = false
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_v3ih2")
+emitting = false
 amount = 10
 process_material = SubResource("ShaderMaterial_qorm4")
 preprocess = 0.5
 speed_scale = 1.5
-script = ExtResource("4_scb2w")
+script = ExtResource("4_g4bp7")
 metadata/_edit_lock_ = true
 
 [node name="AfterimagePalette" type="GPUParticles2D" parent="Ken"]
@@ -230,8 +230,7 @@ amount = 10
 process_material = SubResource("ShaderMaterial_qorm4")
 texture = SubResource("ViewportTexture_cyshs")
 preprocess = 0.5
-speed_scale = 1.5
-script = ExtResource("4_scb2w")
+script = ExtResource("4_g4bp7")
 viewportTexture = true
 metadata/_edit_lock_ = true
 
@@ -244,7 +243,6 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_3uohy")
 position = Vector2(1886, 82)
 texture = ExtResource("2_t3hh5")
-frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Ken"]
 libraries = {

@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=3 uid="uid://bjcvxu4dwdwvm"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/AfterImage/Afterimage_Helper.gd" id="1_6gjua"]
+[ext_resource type="Script" path="res://Assets/Scripts/AfterImage/Afterimage_Test_Helper.gd" id="1_6gjua"]
 [ext_resource type="Texture2D" uid="uid://cuwt4i7ylejrk" path="res://Assets/Sprites/Ken_Sheet.png" id="2_ydquh"]
-[ext_resource type="Shader" path="res://Assets/Shaders/AfterImage/PARTICLE_SHADER_TEST2.gdshader" id="3_w7ay5"]
+[ext_resource type="Shader" path="res://Assets/Shaders/AfterImage/AfterimageParticleShader.gdshader" id="3_w7ay5"]
 [ext_resource type="Texture2D" uid="uid://c218qxd50xfx8" path="res://Assets/Sprites/clouds.jpg" id="4_8qkg5"]
 [ext_resource type="Texture2D" uid="uid://dal1vwb47vnlu" path="res://Assets/Sprites/Elena_Stage_Sheet.png" id="5_fxtqs"]
 [ext_resource type="Script" path="res://Assets/Scripts/Afterimage_Palette.gd" id="5_jaa2l"]

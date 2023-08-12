@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3]
 
-[ext_resource type="Shader" path="res://Assets/Shaders/AfterImage/PARTICLE_SHADER_TEST2.gdshader" id="2_8vry0"]
+[ext_resource type="Shader" path="res://Assets/Shaders/AfterImage/AfterimageParticleShader.gdshader" id="2_8vry0"]
 [ext_resource type="Material" uid="uid://chwcxk5ws3tel" path="res://Assets/Resources/ShaderMaterial/water_test1.tres" id="3_cf2sv"]
 [ext_resource type="Shader" path="res://Assets/Shaders/Terrain.gdshader" id="4_80rwi"]
 
